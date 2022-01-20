@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import WeatherAppScreen from "./src/screens/WeatherAppScreen";
+import WeatherDetailScreen from "./src/screens/WeatherDetailScreen";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>
-      
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  {
+    WeatherApp: WeatherAppScreen,
+    WeatherDetail: WeatherDetailScreen,
   },
-});
+  {
+    initialRouteName: "WeatherApp",
+  }
+);
+
+export default createAppContainer(navigator);
