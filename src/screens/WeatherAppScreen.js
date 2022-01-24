@@ -2,10 +2,33 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import SearchBar from "../components/SearchBar";
 import WeatherCard from "../components/WeatherCard";
+import API_KEY from "../../env";
+
+const apiKey = API_KEY;
 
 const WeatherAppScreen = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const fetchApi = async () => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+      );
+      const data = await response.json();
+      console.log(data);
+      setWeather(data);
+    } catch (err) {
+      setErrorMessage("Oops! Something went wrong..");
+    }
+  };
+
+  useEffect(() => {
+    if (city) {
+      fetchApi(weather);
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -16,9 +39,16 @@ const WeatherAppScreen = () => {
         <SearchBar
           city={city}
           inputHandler={setCity}
-          onCitySubmit={() => console.log("city submitted")}
+          onCitySubmit={() => fetchApi(weather)}
         />
-        <WeatherCard />
+        {typeof weather.main != "undefined" ? (
+          <View>
+            {errorMessage ? (
+              <Text style={{ fontWeight: "bold" }}>{errorMessage}</Text>
+            ) : null}
+            <WeatherCard weather={weather} />
+          </View>
+        ) : null}
       </ImageBackground>
     </View>
   );

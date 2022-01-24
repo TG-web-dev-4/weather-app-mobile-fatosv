@@ -8,7 +8,7 @@ const SearchBar = ({ city, inputHandler, onCitySubmit }) => {
       <SimpleLineIcons style={styles.icon} name="location-pin" />
       <TextInput
         style={styles.input}
-        placeholder="Enter a city.."
+        placeholder="Please enter a city"
         value={city}
         onChangeText={inputHandler}
         onEndEditing={onCitySubmit}
@@ -19,7 +19,7 @@ const SearchBar = ({ city, inputHandler, onCitySubmit }) => {
 
 const styles = StyleSheet.create({
   inputBackground: {
-    backgroundColor: "white",
+    backgroundColor: "#D4d4d1",
     opacity: 0.7,
     borderRadius: 10,
     height: 50,
@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
   },
   icon: {
-    fontSize: 30,
+    fontSize: 25,
     marginHorizontal: 10,
   },
 });
