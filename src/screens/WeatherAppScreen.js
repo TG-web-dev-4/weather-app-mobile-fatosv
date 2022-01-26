@@ -54,6 +54,7 @@ const WeatherAppScreen = ({ navigation }) => {
                 navigation.navigate("WeatherDetail", {
                   lon: weather.coord.lon,
                   lat: weather.coord.lat,
+                  cityName: weather.name,
                 })
               }
             >

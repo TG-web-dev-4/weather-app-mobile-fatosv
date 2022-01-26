@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import API_KEY from "../../env";
+import WeatherAccordion from "../components/WeatherAccordion";
 
 const WeatherDetailScreen = ({ navigation }) => {
-  const [details, setDetails] = useState([]);
+  const [weatherDetails, setWeatherDetails] = useState([]);
 
   const lon = navigation.getParam("lon");
   const lat = navigation.getParam("lat");
+  const cityName = navigation.getParam("cityName");
 
   const fetchOneCallApi = async () => {
     try {
@@ -15,14 +17,14 @@ const WeatherDetailScreen = ({ navigation }) => {
       );
       const data = await response.json();
       // console.log(data);
-      setDetails(data);
+      setWeatherDetails(data);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchOneCallApi(details);
+    fetchOneCallApi(weatherDetails);
   }, []);
 
   return (
@@ -31,12 +33,18 @@ const WeatherDetailScreen = ({ navigation }) => {
       source={require("../../assets/clouds.jpg")}
     >
       <View style={styles.weatherDetailsContainer}>
-        {details.daily && (
-          <View style={styles.weatherDetails}>
-            <Text>
-              Day of the Week {Math.round(details.daily[0].temp.min)} °C /{" "}
-              {Math.round(details.daily[0].temp.max)} °C
-            </Text>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>{cityName}</Text>
+        </View>
+        {weatherDetails.daily && (
+          <View>
+            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} />
           </View>
         )}
       </View>
@@ -50,13 +58,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  title: {
+    alignItems: "center",
+    padding: 50,
+  },
+  titleText: {
+    fontSize: 40,
+  },
   weatherDetailsContainer: {
-    height: 550,
+    height: 600,
     width: 350,
-    marginTop: 50,
-    borderRadius: 15,
-    backgroundColor: "#D4d4d1",
-    opacity: 0.7,
+    // borderWidth: 1,
+    // borderColor: "black",
     alignSelf: "center",
   },
 });
