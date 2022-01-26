@@ -32,19 +32,19 @@ const WeatherDetailScreen = ({ navigation }) => {
       style={styles.image}
       source={require("../../assets/clouds.jpg")}
     >
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{cityName}</Text>
+      </View>
       <View style={styles.weatherDetailsContainer}>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>{cityName}</Text>
-        </View>
         {weatherDetails.daily && (
           <View>
-            <WeatherAccordion weatherDetails={weatherDetails} />
-            <WeatherAccordion weatherDetails={weatherDetails} />
-            <WeatherAccordion weatherDetails={weatherDetails} />
-            <WeatherAccordion weatherDetails={weatherDetails} />
-            <WeatherAccordion weatherDetails={weatherDetails} />
-            <WeatherAccordion weatherDetails={weatherDetails} />
-            <WeatherAccordion weatherDetails={weatherDetails} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={1} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={2} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={3} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={4} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={5} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={6} />
+            <WeatherAccordion weatherDetails={weatherDetails} day={7} />
           </View>
         )}
       </View>
@@ -60,16 +60,17 @@ const styles = StyleSheet.create({
   },
   title: {
     alignItems: "center",
-    padding: 50,
+    paddingVertical: 10,
+    marginBottom: 15,
   },
   titleText: {
     fontSize: 40,
   },
   weatherDetailsContainer: {
-    height: 600,
-    width: 350,
     // borderWidth: 1,
     // borderColor: "black",
+    height: 500,
+    width: 350,
     alignSelf: "center",
   },
 });
