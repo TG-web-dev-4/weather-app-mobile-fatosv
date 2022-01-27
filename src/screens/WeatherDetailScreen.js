@@ -30,7 +30,7 @@ const WeatherDetailScreen = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.image}
-      source={require("../../assets/clouds.jpg")}
+      source={require("../../assets/green.jpeg")}
     >
       <View style={styles.title}>
         <Text style={styles.titleText}>{cityName}</Text>
@@ -67,11 +67,10 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   weatherDetailsContainer: {
-    // borderWidth: 1,
-    // borderColor: "black",
     height: 500,
     width: 350,
     alignSelf: "center",
+    borderRadius: 10,
   },
 });
 

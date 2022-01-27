@@ -19,13 +19,15 @@ const SearchBar = ({ city, inputHandler, onCitySubmit }) => {
 
 const styles = StyleSheet.create({
   inputBackground: {
-    backgroundColor: "#D4d4d1",
+    backgroundColor: "#F2FFE9",
     opacity: 0.7,
     borderRadius: 10,
     height: 50,
     marginHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
+    borderColor: "#A6CF98",
+    borderWidth: 1,
   },
   input: {
     flex: 1,
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 25,
     marginHorizontal: 10,
+    color: "#DB6B97",
   },
 });
 

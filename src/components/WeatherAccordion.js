@@ -25,14 +25,17 @@ const WeatherAccordion = ({ weatherDetails, day }) => {
     <View style={styles.accordionContainer}>
       <TouchableOpacity onPress={() => makeVisible()}>
         <View style={styles.accordionTop}>
-          <Image
-            style={styles.weatherIcon}
-            source={{
-              uri: `http://openweathermap.org/img/wn/${weatherDetails.daily[day].weather[0].icon}@2x.png`,
-            }}
-          />
+          <Text style={styles.accordionTextTop}>{weekday} </Text>
+          <View>
+            <Image
+              style={styles.weatherIcon}
+              source={{
+                uri: `http://openweathermap.org/img/wn/${weatherDetails.daily[day].weather[0].icon}@2x.png`,
+              }}
+            />
+          </View>
           <Text style={styles.accordionTextTop}>
-            {weekday}: {Math.round(weatherDetails.daily[day].temp.min)} °C /{" "}
+            {Math.round(weatherDetails.daily[day].temp.min)} °C /{" "}
             {Math.round(weatherDetails.daily[day].temp.max)} °C
           </Text>
           {!isVisible ? (
@@ -61,11 +64,10 @@ const WeatherAccordion = ({ weatherDetails, day }) => {
 
 const styles = StyleSheet.create({
   accordionContainer: {
-    backgroundColor: "#D4d4d1",
+    backgroundColor: "#A6CF98",
     opacity: 0.7,
-
-    // borderColor: "black",
-    // borderWidth: 1,
+    borderColor: "#F2FFE9",
+    borderWidth: 1,
   },
   accordionTop: {
     height: 40,
@@ -77,23 +79,27 @@ const styles = StyleSheet.create({
   accordionTextTop: {
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
+    padding: 5,
+    flex: 2,
   },
   weatherIcon: {
     height: 25,
     width: 40,
+    flex: 2,
   },
   icon: {
     fontSize: 20,
+    color: "#DB6B97",
   },
   accordionBottom: {
-    height: 35,
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-around",
-    paddingHorizontal: 10,
   },
   accordionTextBottom: {
-    fontSize: 17,
+    fontSize: 16,
+    textAlign: "center",
+    paddingVertical: 5,
   },
 });
 

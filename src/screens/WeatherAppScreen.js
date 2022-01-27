@@ -37,7 +37,7 @@ const WeatherAppScreen = ({ navigation }) => {
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require("../../assets/clouds.jpg")}
+        source={require("../../assets/green.jpeg")}
       >
         <SearchBar
           city={city}

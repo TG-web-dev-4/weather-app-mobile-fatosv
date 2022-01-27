@@ -6,17 +6,20 @@ const WeatherCard = ({ weather }) => {
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.weatherTitle}>
-          <Text style={styles.titleText}>
-            {Math.round(weather.main.temp)} °C in {weather.name}
-          </Text>
           <Image
             style={styles.weatherIcon}
             source={{
               uri: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
             }}
           />
+          <Text style={styles.titleText}>
+            {Math.round(weather.main.temp)} °C
+          </Text>
         </View>
         <View style={styles.weatherDescription}>
+          <Text style={styles.descriptionText}>
+            Feels like: {Math.round(weather.main.feels_like)} °C
+          </Text>
           <Text style={styles.descriptionText}>
             Min. temp: {Math.round(weather.main.temp_min)} °C
           </Text>
@@ -41,27 +44,35 @@ const styles = StyleSheet.create({
     width: 350,
     marginTop: 50,
     borderRadius: 15,
-    backgroundColor: "#D4d4d1",
+    backgroundColor: "#A6CF98",
     opacity: 0.7,
+    borderColor: "#F2FFE9",
+    borderWidth: 1,
   },
   weatherTitle: {
+    flexDirection: "row",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   titleText: {
-    fontSize: 30,
+    fontSize: 35,
+    fontWeight: "bold",
+    position: "absolute",
+    left: 115,
+    top: 90,
   },
   weatherIcon: {
-    height: 80,
-    width: 100,
+    height: 130,
+    width: 130,
   },
   weatherDescription: {
     flex: 2,
+    justifyContent: "space-around",
     alignItems: "center",
   },
   descriptionText: {
-    fontSize: 20,
+    fontSize: 25,
     padding: 10,
   },
 });
