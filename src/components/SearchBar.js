@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#A6CF98",
+    borderColor: "#557C55",
     borderWidth: 1,
   },
   input: {

@@ -16,7 +16,6 @@ const WeatherDetailScreen = ({ navigation }) => {
         `https://api.openweathermap.org/data/2.5/onecall?&&appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric`
       );
       const data = await response.json();
-      // console.log(data);
       setWeatherDetails(data);
     } catch (err) {
       console.log(err);

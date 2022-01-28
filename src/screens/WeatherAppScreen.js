@@ -14,6 +14,7 @@ const WeatherAppScreen = ({ navigation }) => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchApi = async () => {
     try {
@@ -30,6 +31,7 @@ const WeatherAppScreen = ({ navigation }) => {
   useEffect(() => {
     if (city) {
       fetchApi(weather);
+      setIsLoading(true);
     }
   }, []);
 
@@ -44,11 +46,20 @@ const WeatherAppScreen = ({ navigation }) => {
           inputHandler={setCity}
           onCitySubmit={() => fetchApi(weather)}
         />
+        <View>
+          {errorMessage ? (
+            <Text style={{ fontWeight: "bold", textAlign: "center" }}>
+              {errorMessage}
+            </Text>
+          ) : null}
+          {isLoading ? (
+            <Text style={{ fontWeight: "bold", textAlign: "center" }}>
+              Loading..
+            </Text>
+          ) : null}
+        </View>
         {weather.main && (
           <View>
-            {errorMessage ? (
-              <Text style={{ fontWeight: "bold" }}>{errorMessage}</Text>
-            ) : null}
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("WeatherDetail", {

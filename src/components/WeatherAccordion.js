@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { Platform } from "react-native";
 
 const WeatherAccordion = ({ weatherDetails, day }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const date = weatherDetails.daily[day].dt;
-  let unixTimestamp = date;
-  const milliseconds = unixTimestamp * 1000;
+  const milliseconds = date * 1000;
   const dateObject = new Date(milliseconds);
   const weekday = dateObject.toLocaleString("en-UK", {
     weekday: "short",
     month: "numeric",
     day: "numeric",
   });
+
+  const formatDate = (date) => {
+    const d = new Date(date * 1000);
+    const m = d.getMonth() + 1;
+    const day = d.getDate();
+    const year = d.getFullYear();
+    return [day, m, year].join("/");
+  };
+  const dateAndroid = formatDate(date);
 
   const makeVisible = () => {
     if (isVisible == false) {
@@ -25,7 +34,11 @@ const WeatherAccordion = ({ weatherDetails, day }) => {
     <View style={styles.accordionContainer}>
       <TouchableOpacity onPress={() => makeVisible()}>
         <View style={styles.accordionTop}>
-          <Text style={styles.accordionTextTop}>{weekday} </Text>
+          {Platform.OS === "ios" ? (
+            <Text style={styles.accordionTextTop}>{weekday}</Text>
+          ) : (
+            <Text style={styles.accordionTextTop}>{dateAndroid}</Text>
+          )}
           <View>
             <Image
               style={styles.weatherIcon}
