@@ -24,15 +24,9 @@ const WeatherAccordion = ({ weatherDetails, day }) => {
   };
   const dateAndroid = formatDate(date);
 
-  const makeVisible = () => {
-    if (isVisible == false) {
-      setIsVisible(true);
-    } else setIsVisible(false);
-  };
-
   return (
     <View style={styles.accordionContainer}>
-      <TouchableOpacity onPress={() => makeVisible()}>
+      <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
         <View style={styles.accordionTop}>
           {Platform.OS === "ios" ? (
             <Text style={styles.accordionTextTop}>{weekday}</Text>
@@ -52,9 +46,9 @@ const WeatherAccordion = ({ weatherDetails, day }) => {
             {Math.round(weatherDetails.daily[day].temp.max)} °C
           </Text>
           {!isVisible ? (
-            <AntDesign name="down" style={styles.icon} />
-          ) : (
             <AntDesign name="up" style={styles.icon} />
+          ) : (
+            <AntDesign name="down" style={styles.icon} />
           )}
         </View>
       </TouchableOpacity>

@@ -66,6 +66,7 @@ const WeatherAppScreen = ({ navigation }) => {
                   lon: weather.coord.lon,
                   lat: weather.coord.lat,
                   cityName: weather.name,
+                  country: weather.sys.country,
                 })
               }
             >

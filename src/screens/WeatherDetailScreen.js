@@ -9,6 +9,7 @@ const WeatherDetailScreen = ({ navigation }) => {
   const lon = navigation.getParam("lon");
   const lat = navigation.getParam("lat");
   const cityName = navigation.getParam("cityName");
+  const country = navigation.getParam("country");
 
   const fetchOneCallApi = async () => {
     try {
@@ -32,20 +33,23 @@ const WeatherDetailScreen = ({ navigation }) => {
       source={require("../../assets/green.jpeg")}
     >
       <View style={styles.title}>
-        <Text style={styles.titleText}>{cityName}</Text>
+        <Text style={styles.titleText}>
+          {cityName}, {country}
+        </Text>
       </View>
       <View style={styles.weatherDetailsContainer}>
-        {weatherDetails.daily && (
-          <View>
-            <WeatherAccordion weatherDetails={weatherDetails} day={1} />
-            <WeatherAccordion weatherDetails={weatherDetails} day={2} />
-            <WeatherAccordion weatherDetails={weatherDetails} day={3} />
-            <WeatherAccordion weatherDetails={weatherDetails} day={4} />
-            <WeatherAccordion weatherDetails={weatherDetails} day={5} />
-            <WeatherAccordion weatherDetails={weatherDetails} day={6} />
-            <WeatherAccordion weatherDetails={weatherDetails} day={7} />
-          </View>
-        )}
+        {weatherDetails.daily &&
+          weatherDetails.daily.map((day, index) => {
+            if (index === 0) return false;
+            if (index > 7) return;
+            return (
+              <WeatherAccordion
+                key={index}
+                weatherDetails={weatherDetails}
+                day={index}
+              />
+            );
+          })}
       </View>
     </ImageBackground>
   );
